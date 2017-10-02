@@ -1,0 +1,24 @@
+# Play framework とは
+  javaとScalaのためのMVCフレームワーク
+  ScalaでMVCどう作るの？
+  Javaのplayを使う場合はjdkを入れておくこと
+
+  スピード感と変更に対する強さが欲しい
+  -> Ruby, Railsが注目される
+    繰り返しを避ける->コードの重複が避けられるのでリファクタリングしやすい
+    設定より規約->XML地獄から脱出
+  -> Play Framework
+    Railsの思想をJavaで実現したフレームワーク
+    Rubyライクにコード修正したら即座に反映される
+    !! つまり jdkインストールしてjavacコマンド使える様にしないとエラーになる !!
+
+  $ play new firstProject
+  $ play
+  $ run
+  localhost:9000にブラウザでアクセス
+  ->playで作ったページが表示される
+  rails server して:3000にアクセスするのと同じ要領
+
+
+http://www.atmarkit.co.jp/fjava/index/index_play.html
+http://www.atmarkit.co.jp/fjava/index/index_scala.html
