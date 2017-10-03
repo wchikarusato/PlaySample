@@ -1,23 +1,57 @@
-# Play framework �Ƃ�
-  java��Scala�̂��߂�MVC�t���[�����[�N
-  Scala��MVC�ǂ����́H
-  Java��play���g���ꍇ��jdk�����Ă�������
+# Play framework とは
+  javaとScalaのためのMVCフレームワーク
 
-  �X�s�[�h���ƕύX�ɑ΂��鋭�����~����
-  -> Ruby, Rails�����ڂ����
-    �J��Ԃ��������->�R�[�h�̏d������������̂Ń��t�@�N�^�����O���₷��
-    �ݒ���K��->XML�n������E�o
+  スピード感と変更に対する強さが欲しい
+  -> Ruby, Railsが注目される
+    繰り返しを避ける->コードの重複が避けられるのでリファクタリングしやすい
+    設定より規約->XML地獄から脱出
   -> Play Framework
-    Rails�̎v�z��Java�Ŏ��������t���[�����[�N
-    Ruby���C�N�ɃR�[�h�C�������瑦���ɔ��f�����
-    !! �܂� jdk�C���X�g�[������javac�R�}���h�g����l�ɂ��Ȃ��ƃG���[�ɂȂ� !!
+    Railsの思想をJavaで実現したフレームワーク
+    Rubyライクにコード修正したら即座に反映される
+    つまり、Javaのplayを使う場合はjreでなくjdkを入れておく必要がある。
+    javacコマンド使える様にしないとエラーになる
+    scalaも同じ
 
+# Playでプロジェクト生成
   $ play new firstProject
   $ play
   $ run
-  localhost:9000�Ƀu���E�U�ŃA�N�Z�X
-  ->play�ō�����y�[�W���\�������
-  rails server ����:3000�ɃA�N�Z�X����̂Ɠ����v��
+  localhost:9000にブラウザでアクセス
+  ->playで作ったページが表示される
+  rails server して:3000にアクセスするのと同じ要領
+
+
+# eclipseに取り込む
+  $ play
+  $ eclipse  with-source=true
+  ->カーソル戻るまで10分くらい待つ
+
+  eclipseで空き場所右クリック import
+  existing projects でフィルタリング
+  Select root directoryに上でplayコマンドした場所を指定してfinish
+  
+# アーキテクチャー
+  クライアントからplayアプリにリクエスト
+  -> 組み込みHttpサーバー(Netty)が受け取る
+    ->NettyからPlay Frameworkにデータを転送
+    -> playアプリでレスポンスを生成
+    ->Nettyに返す
+  -> Nettyからクライアントに応答を返す
+
+## Playの流れ
+  conf/routesファイルの定義に基づいて処理するJavaのメソッドを特定
+  ->app/Application.scala にコントローラが定義されている
+  ->処理を実行する
+  ->処理結果を返す
+
+### Netty
+  ネットワークアプリ用のフレームワーク
+  Nettyが入ってるのでPlayを動かすのにAPサーバーやWebサーバーを用意する必要がない
+
+# app
+  コントローラに相当
+  アプリはリクエストを受けると conf/routes に定義された陸恵右sとパスとHTTPメソッドを元に対応するコントローラを探す
+  コントローラは Application.scala に記述する。
 
 
 http://www.atmarkit.co.jp/fjava/index/index_play.html
